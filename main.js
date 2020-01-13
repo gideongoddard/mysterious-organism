@@ -18,41 +18,64 @@ const indexPicker = () => {
   return index;
 }
 
-const pAequorFactory = (speciminNum, speciminDNA) => {
-  console.log('DNA provided to the factory function as 2nd parameter: ' + speciminDNA);
+const pAequorFactory = (specimenNum, specimenDNA) => {
+  console.log('DNA provided to the factory function as 2nd parameter: ' + specimenDNA);
   return {
-    speciminNum,
-    speciminDNA,
+    specimenNum,
+    specimenDNA,
     mutate() {
       let changeBaseIndex = indexPicker();
       console.log('Index: ' + changeBaseIndex);
-      console.log('Value at index: ' + this.speciminDNA[changeBaseIndex]);
+      console.log('Value at index: ' + this.specimenDNA[changeBaseIndex]);
       let newBase = returnRandomBase();
       console.log('New value to replace existing value at index: ' + newBase);
-      while (this.speciminDNA[changeBaseIndex] === newBase) {
+      while (this.specimenDNA[changeBaseIndex] === newBase) {
         newBase = returnRandomBase();
         console.log('Value to replace existing value at index if it was previously the same: ' + newBase);
       }
-      console.log('DNA before reassignment: ' + this.speciminDNA);
-      this.speciminDNA[changeBaseIndex] = newBase;
-      console.log('DNA after reassignment: ' + this.speciminDNA);
-      return this.speciminDNA;
+      console.log('DNA before reassignment: ' + this.specimenDNA);
+      this.specimenDNA[changeBaseIndex] = newBase;
+      console.log('DNA after reassignment: ' + this.specimenDNA);
+      return this.specimenDNA;
     },
-    compareDNA(specimin) {
+    compareDNA(specimen) {
       let matchCount = 0;
       for (let i=0; i < 15; i++) {
-        if (this.speciminDNA[i] === specimin.speciminDNA[i]) {
+        if (this.specimenDNA[i] === specimen.specimenDNA[i]) {
           matchCount++;
         }
       }
       console.log(matchCount);
-      let percentage = (matchCount / 15) * 100;
-      console.log(`Specimin ${this.speciminNum} and specimin ${specimin.speciminNum} have ${percentage.toFixed(0)}% DNA in common.`);
+      let matchPercentage = (matchCount / 15) * 100;
+      console.log(`specimen ${this.specimenNum} and specimen ${specimen.specimenNum} have ${matchPercentage.toFixed(0)}% DNA in common.`);
+    },
+    willLikelySurvive() {
+      let goodDNA = 0;
+      for (let i=0; i < 15; i++) {
+        if (this.specimenDNA[i] === 'C' || this.specimenDNA[i] === 'G') {
+          goodDNA++;
+        }
+      }
+      let goodPercentage = (goodDNA / 15) * 100;
+      console.log(goodPercentage);
+      if (goodPercentage >= 60) {
+        return true;
+      } else {
+        return false;
+      }
     },
   }
 }
 
-const speciminA = pAequorFactory(1, mockUpStrand());
-const speciminB = pAequorFactory(2, mockUpStrand());
+let pAequorSurvivors = [];
+let idCounter = 1;
 
-speciminA.compareDNA(speciminB);
+while (pAequorSurvivors.length < 30) {
+  let newSpecimen = pAequorFactory(idCounter, mockUpStrand());
+  if (newSpecimen.willLikelySurvive()) {
+    pAequorSurvivors.push(newSpecimen);
+  }
+  idCounter++;
+}
+
+console.log(pAequorSurvivors.length);
