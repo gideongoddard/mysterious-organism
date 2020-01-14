@@ -1,3 +1,10 @@
+:root {
+    --type-base: calc(1.6em + 0.5vw);
+    --type-small: 85%;
+    --type-medium: 100%;
+    --type-large: 120%;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,13 +12,23 @@
 }
 
 body {
-    text-align: center;
+    font-size: var(--type-base);
 }
 
 h1 {
-    margin: 40px 0 20px 0;
+    margin: 40px 0 30px 0;
+    font-size: var(--type-large);
+    text-align: center;
 }
 
 p {
     margin: 10px 0 5px 0;
+    font-size: var(--type-small);
 }
+
+section{ 
+    margin: auto;
+    width: 95%;
+    max-width: 1200px;
+}
+
