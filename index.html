@@ -8,12 +8,16 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script id="templateHB" type="text/x-handlebars-template">
-        <div class="specimen-number">
-            <p>{{number}}</p>
+        {{#each survivors}}
+        <div class="specimen">
+            <div class="specimen-number">
+                <p>Specimen: {{this.specimenNum}}</p>
+            </div>
+            <div class="dna">
+                <p>DNA String:<br />{{this.specimenDNA}}</p>
+            </div>
         </div>
-        <div class="dna">
-            <p>{{dna}}</p>
-        </div>
+        {{/each}}
     </script>
 </head>
 <body>

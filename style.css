@@ -1,5 +1,6 @@
 :root {
     --type-base: calc(1.6em + 0.5vw);
+    --type-x-small: 70%;
     --type-small: 85%;
     --type-medium: 100%;
     --type-large: 120%;
@@ -32,3 +33,22 @@ section{
     max-width: 1200px;
 }
 
+.specimen {
+    border-bottom: 1px solid black;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.specimen:first-child {
+    border-top: 1px solid black;
+}
+
+#data {
+    padding: 50px 0;
+}
+
+#data p {
+    font-size: var(--type-x-small);
+}
