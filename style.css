@@ -1,5 +1,6 @@
 :root {
     --type-base: calc(1.6em + 0.5vw);
+    --type-xx-small: 50%;
     --type-x-small: 70%;
     --type-small: 85%;
     --type-medium: 100%;
@@ -39,10 +40,21 @@ section{
     grid-template-columns: 1fr 2fr;
     grid-gap: 10px;
     align-items: center;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
 }
 
 .specimen:first-child {
     border-top: 1px solid black;
+}
+
+.specimen-number {
+    padding-left: 10px;
+}
+
+.dna {
+    padding-left: 10px;
+    border-left: 1px solid black;
 }
 
 #data {
@@ -50,5 +62,11 @@ section{
 }
 
 #data p {
-    font-size: var(--type-x-small);
+    font-size: var(--type-small);
+}
+
+@media only screen and (max-width: 630px) {
+    #data p {
+        font-size: var(--type-xx-small);
+    }
 }
