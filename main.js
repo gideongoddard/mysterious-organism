@@ -79,3 +79,12 @@ while (pAequorSurvivors.length < 30) {
 }
 
 console.log(pAequorSurvivors.length);
+
+const context;
+
+console.log(context);
+const templateElement = document.getElementById('templateHB');
+const templateSource = templateElement.innerHTML;
+const template = Handlebars.compile(templateSource);
+const compiledHtml = template(context);
+document.getElementById('data').innerHTML = compiledHtml;
